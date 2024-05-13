@@ -1,5 +1,5 @@
 <section class="container py-5">
-    <app-header (search)="onSearch($event)"></app-header>
+  <app-header (search)="onSearch($event)" (clearSearch)="refreshUsers()"></app-header>
   <div class="user-list">
     <div class="row justify-content-center">
       <div class="user-card col-lg-3" *ngFor="let user of filteredUsers | paginate: {
@@ -15,6 +15,10 @@
     </div>
   </div>
   <pagination-controls class="text-center" *ngIf="filteredUsers.length > 0" (pageChange)="pageChanged($event)"></pagination-controls>
-       
-        <h3 *ngIf="filteredUsers.length == 0" class="text-center mb-4">No user found.</h3>
+  <div class="py-5 text-center" *ngIf="filteredUsers.length == 0">
+    <h3  class="text-center mb-3">No user found.</h3>
+    <p class="refresh-text">
+      Click <span (click)="refreshUsers()">here</span> to refresh
+    </p> 
+  </div>
 </section>

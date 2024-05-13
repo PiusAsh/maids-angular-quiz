@@ -15,13 +15,14 @@ export class UsersListComponent implements OnInit {
   totalPages = 0;
   itemPerPage = 0;
   totalCount = 0;
+  searchTerm: string = '';
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadUsers();
   }
   navigateToUserDetails(userId: number): void {
-    this.router.navigate(['/user', userId]);
+    this.router.navigate(['/users/user', userId]);
   }
   loadUsers(): void {
     this.userService.getUsers(this.currentPage).subscribe((users) => {
@@ -30,25 +31,29 @@ export class UsersListComponent implements OnInit {
       this.totalCount = users.total;
       this.itemPerPage = users.per_page;
       this.totalPages = users.total_pages;
-      console.log(users);
     });
   }
   pageChanged(page: number): void {
     this.currentPage = page;
-    // Reload users based on the new page
     this.loadUsers();
   }
+
   onSearch(searchTerm: string): void {
-    // Trim search term and convert to lowercase for case-insensitive search
-    searchTerm = searchTerm.trim().toLowerCase();
+    this.searchTerm = searchTerm;
+    this.searchTerm = searchTerm.trim().toLowerCase();
 
     // Filter users based on search term
     this.filteredUsers = this.users.filter(
-      (user) => user.id.toString().includes(searchTerm)
+      (user) => user.id.toString().includes(this.searchTerm)
       // To search by first name and last name as well
       // ||
       // user.first_name.toLowerCase().includes(searchTerm) ||
       // user.last_name.toLowerCase().includes(searchTerm)
     );
+  }
+
+  refreshUsers() {
+    this.loadUsers();
+    this.searchTerm = '';
   }
 }
