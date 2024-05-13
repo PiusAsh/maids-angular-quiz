@@ -1,1 +1,28 @@
-<p>user-details works!</p>
+
+
+  
+
+<section style="display: flex; justify-content: center; margin-top: 50px;">
+    <div>
+
+        <app-back-button></app-back-button>
+        <div class="user-card mt-4">
+            <h2 class="text-center">User Details</h2>
+        <div style="display: flex; justify-content: center;">
+      <img [src]="user?.avatar" alt="User Avatar">
+    </div>
+         <div class="list-group">
+               <div class="list-group-item">
+          <strong>ID:</strong> {{ user?.id }}
+        </div>
+        <div class="list-group-item">
+          <strong>Name:</strong> {{ user?.first_name }} {{ user?.last_name }}
+        </div>
+        <div class="list-group-item">
+          <strong>Email:</strong> {{ user?.email }}
+        </div>
+     
+      </div>
+    </div>
+    </div>
+</section>
