@@ -1,0 +1,33 @@
+
+.user-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-card {
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+   background-color: white;
+box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.12), 0px 20px 20px 0px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  width: max-content;
+  transition: transform 0.3s ease;
+}
+
+.user-card img{
+    border-radius: 4px;
+}
+.user-card:hover {
+  transform: translateY(-5px);
+}
+
+.user-details {
+  margin-top: 10px;
+}
+
+.user-details p {
+  margin: 0;
+}

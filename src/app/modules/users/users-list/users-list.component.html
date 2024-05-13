@@ -1,0 +1,20 @@
+<section class="container py-5">
+    <app-header (search)="onSearch($event)"></app-header>
+  <div class="user-list">
+    <div class="row justify-content-center">
+      <div class="user-card col-lg-3" *ngFor="let user of filteredUsers | paginate: {
+                itemsPerPage: itemPerPage,
+                currentPage: currentPage,
+                totalItems: totalCount }" (click)="navigateToUserDetails(user.id)">
+        <img [src]="user.avatar" alt="User Avatar">
+        <div class="user-details">
+          <p>{{ user.first_name }} {{ user.last_name }}</p>
+          <p>ID: {{ user.id }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls class="text-center" *ngIf="filteredUsers.length > 0" (pageChange)="pageChanged($event)"></pagination-controls>
+       
+        <h3 *ngIf="filteredUsers.length == 0" class="text-center mb-4">No user found.</h3>
+</section>
